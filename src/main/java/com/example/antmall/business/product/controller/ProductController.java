@@ -1,6 +1,7 @@
 package com.example.antmall.business.product.controller;
 
 import com.example.antmall.business.product.bo.ProductAddBO;
+import com.example.antmall.business.product.bo.ProductEditBO;
 import com.example.antmall.business.product.service.ProductService;
 import com.example.antmall.business.product.service.impl.ProductServiceImpl;
 import io.swagger.annotations.Api;
@@ -20,9 +21,15 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @ApiOperation("说明")
+    @ApiOperation("添加")
     @PostMapping("add")
     public void add(@Valid @RequestBody ProductAddBO addBO){
         productService.add(addBO);
+    }
+
+    @ApiOperation("修改")
+    @PostMapping("edit")
+    public void edit(@Valid @RequestBody ProductEditBO editBO){
+        productService.edit(editBO);
     }
 }
