@@ -2,15 +2,15 @@ package com.example.antmall.business.product.controller;
 
 import com.example.antmall.business.product.bo.ProductAddBO;
 import com.example.antmall.business.product.bo.ProductEditBO;
+import com.example.antmall.business.product.bo.ProductQueryBO;
+import com.example.antmall.business.product.bo.ProductQueryVO;
 import com.example.antmall.business.product.service.ProductService;
 import com.example.antmall.business.product.service.impl.ProductServiceImpl;
+import com.example.antmall.common.entity.PageVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,5 +31,11 @@ public class ProductController {
     @PostMapping("edit")
     public void edit(@Valid @RequestBody ProductEditBO editBO){
         productService.edit(editBO);
+    }
+
+    @ApiOperation("分页查询")
+    @GetMapping("page")
+    public PageVO<ProductQueryVO> page(ProductQueryBO queryBO){
+        return productService.page(queryBO);
     }
 }
